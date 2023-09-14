@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useDispatch } from "react";
+import { useState } from "react";
 import { createNewForm } from "../utils/apiFunctions";
 
 
@@ -81,11 +81,8 @@ const items = [
 
 export default function Form() {
 
-    // const dispatch = useDispatch();
-
     const [form, setForm] = useState({});
 
-    const [error, setError] = useState();
 
     function handleChange(e) {
         setForm({
@@ -96,8 +93,6 @@ export default function Form() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(form)
-        // dispatch(actions.setNewForm(form))
         createNewForm(form)
         setForm({})
     }

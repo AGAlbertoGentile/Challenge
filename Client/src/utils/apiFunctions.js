@@ -9,16 +9,16 @@ export async function getFormsByName (name){
         const forms = (await axios.get(endpoint, name)).data;
         return forms;
     } catch (error){
-
+        return error.response.data;
     }
 };
 
 export async function createNewForm (form){
-    console.log(form)
+    console.log('1',form)
     try{
         const endpoint = '/newPost';
         const newForm = (await axios.post(endpoint, form)).data;
-        return newForm;
+        return ('Respuestas guardadas correctamente')
     } catch (error){
         return console.log('error al crear');
     }
