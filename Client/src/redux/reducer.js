@@ -1,18 +1,23 @@
-import {GET_ALL_ANSWER} from './actionTypes'
+import {GET_ALL_FORMS, FORM_UPDATED} from './actionTypes'
 
 
 const initialState = {
-    allAnswers : []
+    allUserForms : []
 }
 
 const rootReducer = (state = initialState, action)=>{
     const {payload, type} = action;
 
     switch(type){
-        case GET_ALL_ANSWER:
+        case GET_ALL_FORMS:
             return{
                 ...state,
-                allAnswers: payload,
+                allUserForms: payload,
+            }
+        case FORM_UPDATED:
+            return{
+                ...state,
+                allUserForms: payload,
             }
         default:
             return state

@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { createNewForm } from "../utils/apiFunctions";
-import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import style from './form.module.css';
 
 
 const items = [
@@ -83,9 +83,9 @@ const items = [
 
 export default function Form() {
 
-    const dispatch = useDispatch();
-    const allAnswers = useSelector((state) => state.allAnswers);
     const [form, setForm] = useState({});
+
+    const [activeButton, setActiveButton] = useState(false)
 
     function handleChange(e) {
         setForm({
@@ -97,18 +97,20 @@ export default function Form() {
     function handleSubmit(e) {
         e.preventDefault();
         createNewForm(form)
+        alert('El formulario fue creado con exito!')
         // setForm({})
+        setActiveButton(true)
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
+            <div className={style.container}>
                 {items?.map((item, index) => {
                     return (
                         <div key={index}>
-                            <label>{item.label}</label>
+                            <label className={style.label}>{item.label}</label>
                             {item.type === 'select' || item.type === 'radio' ? (
-                                <select
+                                <select className={style.select}
                                     name={item.label}
                                     value={form[item.label] || ''}
                                     onChange={handleChange}
@@ -121,7 +123,7 @@ export default function Form() {
                                     ))}
                                 </select>
                             ) : (
-                                <input
+                                <input className={style.input}
                                     name={item.label}
                                     value={form[item.label] || ''}
                                     placeholder={item.label}
@@ -129,13 +131,14 @@ export default function Form() {
                                     onChange={handleChange}
                                 />
                             )}
+                            
                         </div>
                     );
                 })}
             </div>
             <div>
                 <Link to={`/detail/${form["Nombre completo"]}`}>
-                    <button>Respuestas Anteriores</button>
+                    <button className={style.buttonForm}>Respuestas Anteriores</button>
                 </Link>
             </div>
         </form>

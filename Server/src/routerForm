@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { getByName } = require("./controllers/getByName")
 const { postForm } = require("./controllers/postForm")
-const { updateForm } = require("./controllers")
+const { updateForm } = require("./controllers/updateForm")
 
 const router = Router();
 
@@ -9,7 +9,7 @@ router.post("/newPost",postForm);
 
 router.get("/",getByName);
 
-router.patch("/:id",updateForm)
+router.patch("/",updateForm)
 
 
 module.exports = router;

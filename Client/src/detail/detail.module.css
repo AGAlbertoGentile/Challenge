@@ -1,0 +1,30 @@
+.container{
+    background-color: rgba(226, 226, 226, 0.529);
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 5px 2px 3px #111010
+}
+.buttonDetail {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid #2980b9;
+    box-shadow: 0px 5px 0px #2980b9; /* Sombra inferior */
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  /* Estilo cuando el usuario pasa el cursor por encima */
+  .buttonDetail:hover {
+    transform: translateY(-3px); /* Efecto 3D: levanta el botón */
+    box-shadow: 0px 8px 0px #2980b9; /* Sombra más pronunciada */
+  }
+  
+  /* Estilo cuando se hace clic en el botón */
+  .buttonDetail:active {
+    transform: translateY(0px); /* Restaura la posición original */
+    box-shadow: 0px 5px 0px #2980b9; /* Sombra inferior */
+  }

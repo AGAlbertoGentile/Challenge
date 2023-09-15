@@ -1,0 +1,90 @@
+.container{
+    margin-top: 100px;
+    height: 500px;
+    padding: 10px;
+}
+
+/* .container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+  } */
+
+.buttonForm {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid #2980b9;
+    box-shadow: 0px 5px 0px #2980b9; /* Sombra inferior */
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  /* Estilo cuando el usuario pasa el cursor por encima */
+  .buttonForm:hover {
+    transform: translateY(-3px); /* Efecto 3D: levanta el botón */
+    box-shadow: 0px 8px 0px #2980b9; /* Sombra más pronunciada */
+  }
+  
+  /* Estilo cuando se hace clic en el botón */
+  .buttonForm:active {
+    transform: translateY(0px); /* Restaura la posición original */
+    box-shadow: 0px 5px 0px #2980b9; /* Sombra inferior */
+  }
+
+
+  /* Estilos para inputs */
+input[type="text"],
+input[type="date"],
+input[type="tel"] {
+  display: flex;
+  width: 29%;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 670px;
+  border: 1px solid #3498db;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.2s;
+}
+
+/* Estilos para los selectores (dropdowns) */
+select {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-left: 670px;
+  border: 1px solid #3498db;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Estilos para checkboxes */
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/* Estilo para la etiqueta de los checkboxes */
+label.checkbox-label {
+  color: #333;
+}
+
+.label{
+    font-weight: bold;
+    /* text-shadow: 0px 0px 1px #232527; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(0, 0, 0);
+}

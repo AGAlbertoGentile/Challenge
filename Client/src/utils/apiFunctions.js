@@ -19,6 +19,17 @@ export async function createNewForm (form){
         const newForm = (await axios.post(endpoint, form)).data;
         return ('Respuestas guardadas correctamente')
     } catch (error){
-        return console.log('error al crear');
+        return console.log('Error al crear');
+    }
+};
+
+export async function updateInformationForm (form){
+    try {
+        const endpoint = `/detail/:name/${id}`;
+        const updatedForm = (await axios.patch(endpoint, form)).data;
+        return ('Formulario editado con exito')
+    } catch (error) {
+        return console.log('Error al editar');
+        
     }
 };

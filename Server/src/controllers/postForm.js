@@ -13,7 +13,6 @@ const postForm = async (req, res) => {
             howFound : originalForm["¿Cómo nos encontraste?"] || "",
             subscription : originalForm["¿Desea recibir nuestro boletín informativo?"] ? originalForm["¿Desea recibir nuestro boletín informativo?"] : false,
         }
-        console.log(formatedForm)
         const { fullName, phone, date, language, howFound, subscription } = formatedForm
 
         const newForm = await Forms.create({

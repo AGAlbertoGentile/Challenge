@@ -5,7 +5,7 @@ const updateForm = async (req, res) => {
     try {
         const { id, fullName, phone, date, language, howFound, subscription } = req.body;
 
-        const updateInformation = { id, fullName, phone, date, language, howFound, subscription }
+        const updateInformation = { fullName, phone, date, language, howFound, subscription }
 
         console.log(updateInformation)
 
@@ -13,12 +13,12 @@ const updateForm = async (req, res) => {
             where: {id: id},
         })
 
-        res.status(200).send(response)
+        res.status(200).send(updatedForm)
     } catch (error) {
-        res.status(404).json({ error: error.message })
+        res.status(500).json({ error: error.message })
     }
 };
 
 module.exports = {
-    updateForm,
+    updateForm
 }
