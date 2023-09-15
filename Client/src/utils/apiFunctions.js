@@ -14,7 +14,6 @@ export async function getFormsByName (name){
 };
 
 export async function createNewForm (form){
-    console.log('1',form)
     try{
         const endpoint = '/newPost';
         const newForm = (await axios.post(endpoint, form)).data;

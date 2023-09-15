@@ -1,3 +1,6 @@
+import {GET_ALL_ANSWER} from './actionTypes'
+
+
 const initialState = {
     allAnswers : []
 }

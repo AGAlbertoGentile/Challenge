@@ -13,7 +13,7 @@ const getByName = async (req, res) => {
                 }
             },
         })
-        res.status(200).json({foundUserForm});
+        res.status(200).json(foundUserForm);
     } catch (error) {
         res.status(400).json({error: error.message});
     }

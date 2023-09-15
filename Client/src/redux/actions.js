@@ -1,7 +1,6 @@
 import { getFormsByName } from "../utils/apiFunctions";
 
-export const GET_ALL_ANSWER = 'GET_ALL_ANSWER';
-
+import {GET_ALL_ANSWER} from './actionTypes'
 
 export const setAllAnswers = (name) => {
     return async (dispatch) => {

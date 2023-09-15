@@ -5,6 +5,11 @@ module.exports = (sequelize) => {
     // defino el modelo
 
     sequelize.define('Forms', {
+        id:{
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
         fullName: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -19,12 +24,12 @@ module.exports = (sequelize) => {
         },
         language: {
             type: DataTypes.ENUM,
-            values: ['English', 'Spanish', 'French', 'German'],
+            values: ['english', 'spanish', 'french', 'german'],
             allowNull: false,
         },
         howFound: {
             type: DataTypes.ENUM,
-            values: ['friends', 'online_search', 'advertisment'],
+            values: ['friends', 'online_search', 'advertisement'],
             allowNull: false,
         },
         subscription: {

@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { createNewForm } from "../utils/apiFunctions";
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 const items = [
@@ -81,8 +83,9 @@ const items = [
 
 export default function Form() {
 
+    const dispatch = useDispatch();
+    const allAnswers = useSelector((state) => state.allAnswers);
     const [form, setForm] = useState({});
-
 
     function handleChange(e) {
         setForm({
@@ -94,7 +97,7 @@ export default function Form() {
     function handleSubmit(e) {
         e.preventDefault();
         createNewForm(form)
-        setForm({})
+        // setForm({})
     }
 
     return (
@@ -129,7 +132,11 @@ export default function Form() {
                         </div>
                     );
                 })}
-                <button type="submit">Enviar</button>
+            </div>
+            <div>
+                <Link to={`/detail/${form["Nombre completo"]}`}>
+                    <button>Respuestas Anteriores</button>
+                </Link>
             </div>
         </form>
     )
