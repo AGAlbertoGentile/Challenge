@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-        <h1>Encuenta SoyHenry</h1>  
+        <h1>Encuesta SoyHenry</h1>  
 
       <Routes>
         <Route path="/" element={<Form/>} />

@@ -16,13 +16,13 @@ export const setAllForms = (name) => {
     }
 };
 
-export const updateForm = (form) => {
-    return async (dispatch) => {
-        try {
-            const editedForm = await updateInformationForm(form);
-            dispatch({ type: FORM_UPDATED, payload: editedForm });
-        } catch (error) {
-            console.log('No se puedo editar el formulario')
-        }
-    }
-};
+// export const updateForm = (form) => {
+//     return async (dispatch) => {
+//         try {
+//             const editedForm = await updateInformationForm(form);
+//             dispatch({ type: FORM_UPDATED, payload: editedForm });
+//         } catch (error) {
+//             console.log('No se puedo editar el formulario')
+//         }
+//     }
+// };

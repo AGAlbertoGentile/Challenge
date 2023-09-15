@@ -7,22 +7,15 @@ import { Link } from 'react-router-dom';
 import { updateForm } from '../redux/actions';
 import Form from '../form/Form';
 import style from './detail.module.css';
+import { updateInformationForm } from '../utils/apiFunctions';
 
-
-
-const inputComponents = {
-    STRING: 'input',
-    INTEGER: 'input',
-    language: 'select',
-    BOOLEAN: 'checkbox'
-};
 
 
 export default function Detail() {
 
     const dispatch = useDispatch();
 
-    const [forms, setForms] = useState([]);
+    const [edit, setEdit] = useState(false);
 
     const [editedForm, setEditedForm] = useState(null);
 
@@ -30,86 +23,123 @@ export default function Detail() {
 
     const allUserForms = useSelector((state) => state.allUserForms);
 
+    const allItems =useSelector((state)=> state.allItems);
+
     useEffect(()=>{
         dispatch(setAllForms(name));
     },[])
 
     function handleEditClick(form){
         setEditedForm(form);
+        setEdit(form.id)
     };
 
     function handleSaveClick(){
-        dispatch(updateForm(editedForm))
-        setEditedForm(null)
+        updateInformationForm(editedForm)
+        setEdit(false)
     };
 
     function handleCancelClick(){
+        setEdit(false)
         setEditedForm(null)
     };
 
     function handleInputChange(e){
-        // const { fullName, phone, date, language, howFound, subscription } = e.target;
-        setForms((form) => ({
-            ...form,
+        setEditedForm({
+            ...editedForm,
             [e.target.name] : e.target.value
-        }));
+        });
     };
-
 
     const fieldType = {
         fullName: 'input',
         phone: 'input',
-        date: "",
+        date: 'date',
         language: 'select',
-        howFound: 'select',
+        howFound: 'radio',
         subscription: 'checkbox'
     };
 
-    function renderFormFields(form) {
-        return Object.entries(form).map(([fieldName, fieldValue]) => {
-
-          if (fieldType.fieldName === 'select') {
-            // Si el campo es de tipo ENUM, renderiza un select
+    function renderFormFields() {
+        return Object.entries(editedForm).map(([fieldName, fieldValue]) => {
+            if(fieldName === 'id') return null;
+            console.log(fieldType[fieldName])
+          if (fieldType[fieldName] === 'select') {
             return (
               <div key={fieldName}>
-                <label>{fieldName}</label>
+                {/* <label>{fieldName}</label> */}
                 <select
                   name={fieldName}
-                  value={form[fieldName] || ''}
+                  value={editedForm[fieldName] || ''}
                   onChange={handleInputChange}
                 >
-                  {fieldValue.options.map((option, index) => (
-                    <option key={index} value={option}>
-                      {option}
-                    </option>
-                  ))}
+                  {allItems?.map((item, index) => {
+                    if(item.type === "select"){
+                        return(
+                            item?.options?.map((option, optionIndex) => (
+                                <option key={optionIndex} value={option.value}>
+                                    {option.value}
+                                </option>
+                            ))
+                            )}}
+                        )
+                    };
                 </select>
               </div>
             );
-          } else if (fieldType === 'BOOLEAN') {
+          } else if (fieldType[fieldName] === 'checkbox') {
             // Si el campo es de tipo BOOLEAN, renderiza un checkbox
             return (
               <div key={fieldName}>
-                <label>
                   <input
                     type="checkbox"
                     name={fieldName}
-                    checked={form[fieldName] || false}
+                    checked={editedForm[fieldName] || false}
                     onChange={handleInputChange}
                   />
                   {fieldName}
-                </label>
               </div>
             );
+          }else if(fieldType[fieldName] === 'date'){
+            return(
+                <input
+                    type="date"
+                    name={fieldName}
+                    checked={editedForm[fieldName] || false}
+                    onChange={handleInputChange}
+                  />
+            );
+            }else if (fieldType[fieldName] === 'radio') {
+                return (
+                  <div key={fieldName}>
+                    {/* <label>{fieldName}</label> */}
+                    <select
+                      name={fieldName}
+                      value={editedForm[fieldName] || ''}
+                      onChange={handleInputChange}
+                    >
+                      {allItems?.map((item, index) => {
+                    if(item.type === "radio"){
+                        return(
+                            item?.options?.map((option, optionIndex) => (
+                                <option key={optionIndex} value={option.value}>
+                                    {option.value}
+                                </option>
+                            ))
+                            )}}
+                        )
+                    };
+                    </select>
+                  </div>
+                );
           } else {
-            // Para otros tipos (STRING, INTEGER), renderiza un campo de entrada
             return (
               <div key={fieldName}>
                 {/* <label>{fieldName}</label> */}
                 <input
-                  type={fieldValue.type} // Asumiendo que los tipos son en mayúsculas
+                  type="input" 
                   name={fieldName}
-                  value={form[fieldName] || ''}
+                  value={editedForm[fieldName] || ''}
                   onChange={handleInputChange}
                 />
               </div>
@@ -129,13 +159,13 @@ export default function Detail() {
                     </Link>
                 </div>
                 <h1>Respuestas proporcionadas anteriormente</h1>
-                {allUserForms?.map((form) => (
-                    <div key={form.id} className={style.container}>
-                        {editedForm === form ? (
-                            renderFormFields(form)
+                {allUserForms?.map((form, index) => (
+                    <div key={index} className={style.container}>
+                        {edit === form.id ? (
+                            renderFormFields()
                         ) : (
                             <>
-                                <p>Full Name: {form.fullName}</p>
+                                <p>Name: {form.fullName}</p>
                                 <p>Phone: {form.phone}</p>
                                 <p>Date: {form.date}</p>
                                 <p>Start date: {form.language}</p>
@@ -144,9 +174,9 @@ export default function Detail() {
                                 <button onClick={() => handleEditClick(form)} className={style.buttonDetail}>Edit</button>
                             </>
                         )}
-                        {editedForm === form && (
+                        {edit === form.id && (
                             <>
-                                {/* <button onClick={() => handleSaveClick(form)} className={style.buttonDetail}>Save</button> */}
+                                <button onClick={() => handleSaveClick(form)} className={style.buttonDetail}>Save</button>
                                 <button onClick={() => handleCancelClick(form)} className={style.buttonDetail}>Cancel</button>
                             </>
                         )}

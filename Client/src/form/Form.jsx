@@ -3,89 +3,18 @@ import { useState } from "react";
 import { createNewForm } from "../utils/apiFunctions";
 import { Link } from 'react-router-dom';
 import style from './form.module.css';
+import { useSelector } from "react-redux";
 
 
-const items = [
-    {
-        "type": "text",
-        "label": "Nombre completo",
-        "name": "full_name",
-        "required": true
-    },
-    {
-        "type": "tel",
-        "label": "Número de teléfono",
-        "name": "phone_number",
-        "required": true
-    },
-    {
-        "type": "date",
-        "label": "Fecha de inicio",
-        "name": "start_date",
-        "required": false
-    },
-    {
-        "type": "select",
-        "label": "¿Cuál es tu idioma preferido?",
-        "name": "preferred_language",
-        "options": [
-            {
-                "label": "Inglés",
-                "value": "english"
-            },
-            {
-                "label": "Español",
-                "value": "spanish"
-            },
-            {
-                "label": "Francés",
-                "value": "french"
-            },
-            {
-                "label": "Alemán",
-                "value": "german"
-            }
-        ],
-        "required": true
-    },
-    {
-        "type": "radio",
-        "label": "¿Cómo nos encontraste?",
-        "name": "how_found",
-        "options": [
-            {
-                "label": "Amigos",
-                "value": "friends"
-            },
-            {
-                "label": "Búsqueda en línea",
-                "value": "online_search"
-            },
-            {
-                "label": "Publicidad",
-                "value": "advertisement"
-            }
-        ],
-        "required": true
-    },
-    {
-        "type": "checkbox",
-        "label": "¿Desea recibir nuestro boletín informativo?",
-        "name": "newsletter_subscription",
-        "required": false
-    },
-    {
-        "type": "submit",
-        "label": "Enviar"
-    }
-]
 
 
 export default function Form() {
 
     const [form, setForm] = useState({});
 
-    const [activeButton, setActiveButton] = useState(false)
+    const [activeButton, setActiveButton] = useState(false);
+
+    const allItems =useSelector((state)=> state.allItems);
 
     function handleChange(e) {
         setForm({
@@ -105,7 +34,7 @@ export default function Form() {
     return (
         <form onSubmit={handleSubmit}>
             <div className={style.container}>
-                {items?.map((item, index) => {
+                {allItems?.map((item, index) => {
                     return (
                         <div key={index}>
                             <label className={style.label}>{item.label}</label>
