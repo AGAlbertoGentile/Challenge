@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { setAllForms} from '../redux/actions'
+import { setAllForms } from '../redux/actions'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { updateForm } from '../redux/actions';
-import Form from '../form/Form';
 import style from './detail.module.css';
 import { updateInformationForm } from '../utils/apiFunctions';
 
@@ -23,31 +21,31 @@ export default function Detail() {
 
     const allUserForms = useSelector((state) => state.allUserForms);
 
-    const allItems =useSelector((state)=> state.allItems);
+    const allItems = useSelector((state) => state.allItems);
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(setAllForms(name));
-    },[])
+    }, [edit])
 
-    function handleEditClick(form){
+    function handleEditClick(form) {
         setEditedForm(form);
         setEdit(form.id)
     };
 
-    function handleSaveClick(){
+    function handleSaveClick() {
         updateInformationForm(editedForm)
         setEdit(false)
     };
 
-    function handleCancelClick(){
+    function handleCancelClick() {
         setEdit(false)
         setEditedForm(null)
     };
 
-    function handleInputChange(e){
+    function handleInputChange(e) {
         setEditedForm({
             ...editedForm,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         });
     };
 
@@ -62,89 +60,94 @@ export default function Detail() {
 
     function renderFormFields() {
         return Object.entries(editedForm).map(([fieldName, fieldValue]) => {
-            if(fieldName === 'id') return null;
-            console.log(fieldType[fieldName])
-          if (fieldType[fieldName] === 'select') {
-            return (
-              <div key={fieldName}>
-                {/* <label>{fieldName}</label> */}
-                <select
-                  name={fieldName}
-                  value={editedForm[fieldName] || ''}
-                  onChange={handleInputChange}
-                >
-                  {allItems?.map((item, index) => {
-                    if(item.type === "select"){
-                        return(
-                            item?.options?.map((option, optionIndex) => (
-                                <option key={optionIndex} value={option.value}>
-                                    {option.value}
-                                </option>
-                            ))
-                            )}}
-                        )
-                    };
-                </select>
-              </div>
-            );
-          } else if (fieldType[fieldName] === 'checkbox') {
-            // Si el campo es de tipo BOOLEAN, renderiza un checkbox
-            return (
-              <div key={fieldName}>
-                  <input
-                    type="checkbox"
-                    name={fieldName}
-                    checked={editedForm[fieldName] || false}
-                    onChange={handleInputChange}
-                  />
-                  {fieldName}
-              </div>
-            );
-          }else if(fieldType[fieldName] === 'date'){
-            return(
-                <input
-                    type="date"
-                    name={fieldName}
-                    checked={editedForm[fieldName] || false}
-                    onChange={handleInputChange}
-                  />
-            );
-            }else if (fieldType[fieldName] === 'radio') {
+            if (fieldName === 'id') return null;
+            if (fieldType[fieldName] === 'select') {
                 return (
-                  <div key={fieldName}>
-                    {/* <label>{fieldName}</label> */}
-                    <select
-                      name={fieldName}
-                      value={editedForm[fieldName] || ''}
-                      onChange={handleInputChange}
-                    >
-                      {allItems?.map((item, index) => {
-                    if(item.type === "radio"){
-                        return(
-                            item?.options?.map((option, optionIndex) => (
-                                <option key={optionIndex} value={option.value}>
-                                    {option.value}
-                                </option>
-                            ))
-                            )}}
-                        )
-                    };
-                    </select>
-                  </div>
+                    <div key={fieldName}>
+                        {/* <label>{fieldName}</label> */}
+                        <select
+                            name={fieldName}
+                            value={editedForm[fieldName] || ''}
+                            onChange={handleInputChange}
+                        >
+                            {allItems?.map((item, index) => {
+                                if (item.type === "select") {
+                                    return (
+                                        item?.options?.map((option, optionIndex) => (
+                                            <option key={optionIndex} value={option.value}>
+                                                {option.value}
+                                            </option>
+                                        ))
+                                    )
+                                }
+                            }
+                            )
+                            };
+                        </select>
+                    </div>
                 );
-          } else {
-            return (
-              <div key={fieldName}>
-                {/* <label>{fieldName}</label> */}
-                <input
-                  type="input" 
-                  name={fieldName}
-                  value={editedForm[fieldName] || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-            );
-          }
+            } else if (fieldType[fieldName] === 'checkbox') {
+                // Si el campo es de tipo BOOLEAN, renderiza un checkbox
+                return (
+                    <div key={fieldName}>
+                        <input
+                            type="checkbox"
+                            name={fieldName}
+                            checked={editedForm[fieldName] || false}
+                            onChange={handleInputChange}
+                        />
+                        {fieldName}
+                    </div>
+                );
+            } else if (fieldType[fieldName] === 'date') {
+                return (
+                    <div>
+                        <input
+                            type="date"
+                            name={fieldName}
+                            checked={editedForm[fieldName] || false}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                );
+            } else if (fieldType[fieldName] === 'radio') {
+                return (
+                    <div key={fieldName}>
+                        {/* <label>{fieldName}</label> */}
+                        <select
+                            name={fieldName}
+                            value={editedForm[fieldName] || ''}
+                            onChange={handleInputChange}
+                        >
+                            {allItems?.map((item, index) => {
+                                if (item.type === "radio") {
+                                    return (
+                                        item?.options?.map((option, optionIndex) => (
+                                            <option key={optionIndex} value={option.value}>
+                                                {option.value}
+                                            </option>
+                                        ))
+                                    )
+                                }
+                            }
+                            )
+                            };
+                        </select>
+                    </div>
+                );
+            } else {
+                return (
+                    <div key={fieldName}>
+                        {/* <label>{fieldName}</label> */}
+                        <input
+                            type="input"
+                            name={fieldName}
+                            value={editedForm[fieldName] || ''}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                );
+            }
         });
     }
 
@@ -183,8 +186,7 @@ export default function Detail() {
                     </div>
                 ))}
             </div>
-            
+
         </div>
     );
 }
-    

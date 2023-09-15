@@ -25,7 +25,8 @@ export async function createNewForm (form){
 
 export async function updateInformationForm (form){
     try {
-        const endpoint = '/update';
+        const endpoint = '/';
+        
         const updatedForm = (await axios.put(endpoint, form)).data;
         return ('Formulario editado con exito')
     } catch (error) {

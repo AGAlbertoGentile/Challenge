@@ -9,7 +9,7 @@ router.post("/newPost",postForm);
 
 router.get("/",getByName);
 
-router.put("/update",updateForm)
+router.put("/",updateForm)
 
 
 module.exports = router;

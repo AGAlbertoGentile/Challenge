@@ -37,9 +37,10 @@ export default function Form() {
                 {allItems?.map((item, index) => {
                     return (
                         <div key={index}>
-                            <label className={style.label}>{item.label}</label>
+                            {/* <label className={style.label}>{item.label}</label> */}
                             {item.type === 'select' || item.type === 'radio' ? (
-                                <select className={style.select}
+                                <select className={style.selectForm}
+
                                     name={item.label}
                                     value={form[item.label] || ''}
                                     onChange={handleChange}
@@ -51,14 +52,17 @@ export default function Form() {
                                         </option>
                                     ))}
                                 </select>
-                            ) : (
-                                <input className={style.input}
+                            ) : (item.type === 'submit' ? (
+                                <button className={style.buttonForm}>{item.label}</button>
+                            ):(
+                                <input className={style.inputForm}
                                     name={item.label}
                                     value={form[item.label] || ''}
                                     placeholder={item.label}
                                     type={item.type}
                                     onChange={handleChange}
                                 />
+                            )
                             )}
                             
                         </div>

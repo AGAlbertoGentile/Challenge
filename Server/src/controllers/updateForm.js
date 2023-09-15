@@ -8,8 +8,6 @@ const updateForm = async (req, res) => {
 
         const updateInformation = { fullName, phone, date, language, howFound, subscription }
 
-        console.log(updateInformation)
-
         const updatedForm = await Forms.update(updateInformation, {
             where: {id: id},
         })
