@@ -2,7 +2,6 @@ const { Forms } = require("../db");
 
 
 const updateForm = async (req, res) => {
-    console.log('te amo adri')
     try {
         const { id, fullName, phone, date, language, howFound, subscription } = req.body;
 

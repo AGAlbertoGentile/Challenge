@@ -1,0 +1,64 @@
+/* Estilo del fondo desenfocado */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  /* Estilo del modal */
+  .modal {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    max-width: 80%;
+    width: 400px;
+    text-align: center;
+    position: relative;
+    z-index: 1001;
+  }
+  
+  /* Estilo del contenido del modal */
+  .modal h2 {
+    margin-top: 5px;
+  }
+  
+  /* Estilo de fondo desenfocado cuando el modal está cerrado */
+  .no-modal {
+    display: none;
+  }
+
+  .buttonModal {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin: 10px 5px 5px 5px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid #2980b9;
+    box-shadow: 0px 5px 0px #2980b9; /* Sombra inferior */
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  /* Estilo cuando el usuario pasa el cursor por encima */
+  .buttonModal:hover {
+    transform: translateY(-3px); /* Efecto 3D: levanta el botón */
+    box-shadow: 0px 8px 0px #2980b9; /* Sombra más pronunciada */
+  }
+  
+  /* Estilo cuando se hace clic en el botón */
+  .buttonModal:active {
+    transform: translateY(0px); /* Restaura la posición original */
+    box-shadow: 0px 5px 0px #2980b9; /* Sombra inferior */
+  }

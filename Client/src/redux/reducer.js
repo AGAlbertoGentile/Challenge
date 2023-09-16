@@ -1,4 +1,4 @@
-import { GET_ALL_FORMS, FORM_UPDATED } from './actionTypes'
+import { GET_ALL_FORMS } from './actionTypes'
 
 
 const items = [

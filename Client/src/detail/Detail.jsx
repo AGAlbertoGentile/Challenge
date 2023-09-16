@@ -43,9 +43,11 @@ export default function Detail() {
     };
 
     function handleInputChange(e) {
+        const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
         setEditedForm({
             ...editedForm,
-            [e.target.name]: e.target.value
+            [e.target.name]: newValue
         });
     };
 
@@ -60,7 +62,9 @@ export default function Detail() {
 
     function renderFormFields() {
         return Object.entries(editedForm).map(([fieldName, fieldValue]) => {
+
             if (fieldName === 'id') return null;
+
             if (fieldType[fieldName] === 'select') {
                 return (
                     <div key={fieldName}>
@@ -161,19 +165,20 @@ export default function Detail() {
                         <button className={style.buttonDetail}>New Form</button>
                     </Link>
                 </div>
-                <h1>Respuestas proporcionadas anteriormente</h1>
+                <h1>Previously provided answers</h1>
+                <p className={style.subTitle}>Unedited forms are located at the top</p>
                 {allUserForms?.map((form, index) => (
                     <div key={index} className={style.container}>
                         {edit === form.id ? (
                             renderFormFields()
                         ) : (
-                            <>
-                                <p>Name: {form.fullName}</p>
-                                <p>Phone: {form.phone}</p>
-                                <p>Date: {form.date}</p>
-                                <p>Start date: {form.language}</p>
-                                <p>How did you find us?: {form.howFound}</p>
-                                <p>Subscription: {form.subscription}</p>
+                            <>  
+                                <h2>Name: {form.fullName}</h2>
+                                <h2>Phone: {form.phone}</h2>
+                                <h2>Start date: {form.date}</h2>
+                                <h2>Language: {form.language}</h2>
+                                <h2>How did you find us? {form.howFound}</h2>
+                                <h2>{form.subscription ? "Subscribed" : "Unsubscribed"}</h2>
                                 <button onClick={() => handleEditClick(form)} className={style.buttonDetail}>Edit</button>
                             </>
                         )}
