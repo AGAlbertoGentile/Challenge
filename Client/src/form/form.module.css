@@ -95,6 +95,7 @@ label.checkbox-label {
 }
 
 .validations{
-  color: red;
+  color: rgb(56, 100, 202);
   font-size: 14px;
+  font-weight: bold;
 }
