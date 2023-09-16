@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { createNewForm } from "../utils/apiFunctions";
-import { Link } from 'react-router-dom';
 import style from './form.module.css';
 import { useSelector } from "react-redux";
 import Modal from "../modal/Modal";

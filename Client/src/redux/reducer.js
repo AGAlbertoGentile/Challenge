@@ -1,6 +1,5 @@
 import { GET_ALL_FORMS } from './actionTypes'
 
-
 const items = [
     {
         "type": "text",
@@ -75,7 +74,6 @@ const items = [
         "label": "Enviar"
     }
 ]
-
 
 const initialState = {
     allUserForms: [],

@@ -160,12 +160,12 @@ export default function Detail() {
     return (
         <div>
             <div>
+                <h1>Previously provided answers</h1>
                 <div>
                     <Link to={'/'}>
                         <button className={style.buttonDetail}>New Form</button>
                     </Link>
                 </div>
-                <h1>Previously provided answers</h1>
                 <p className={style.subTitle}>Unedited forms are located at the top</p>
                 {allUserForms?.map((form, index) => (
                     <div key={index} className={style.container}>

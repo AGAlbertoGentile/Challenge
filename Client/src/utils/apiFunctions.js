@@ -17,13 +17,10 @@ export async function createNewForm (form){
     try{
         const endpoint = '/newPost';
         const newForm = (await axios.post(endpoint, form)).data;
-        // alert('El formulario fue creado con exito!')
-
         return ('Respuestas guardadas correctamente')
     } catch (error){
         alert('El formulario no se pudo crear')
         return console.log('Error al crear');
-
     }
 };
 
@@ -34,6 +31,5 @@ export async function updateInformationForm (form){
         return ('Formulario editado con exito')
     } catch (error) {
         return console.log('Error al editar');
-        
     }
 };
