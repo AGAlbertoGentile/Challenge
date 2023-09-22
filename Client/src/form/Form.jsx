@@ -75,6 +75,7 @@ export default function Form() {
           if (item.type === 'select' || item.type === 'radio') {
             element = (
               <div>
+                <label>{item.label}</label>
                 <select
                   className={style.selectForm}
                   name={item.label}
@@ -113,6 +114,8 @@ export default function Form() {
           } else {
             element = (
               <div>
+                <label>{item.label}</label>
+
                 <input
                   className={style.inputForm}
                   name={item.label}
